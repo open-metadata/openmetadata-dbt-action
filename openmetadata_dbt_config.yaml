@@ -6,9 +6,9 @@ source:
       type: DBT
       dbtConfigSource:
         dbtConfigType: local
-        dbtCatalogFilePath: /home/runner/work/openmetadata-dbt-action/openmetadata-dbt-action/catalog.json
-        dbtManifestFilePath: /home/runner/work/openmetadata-dbt-action/openmetadata-dbt-action/manifest.json
-        dbtRunResultsFilePath: /home/runner/work/openmetadata-dbt-action/openmetadata-dbt-action/run_results.json
+        dbtCatalogFilePath: /home/runner/work/openmetadata-dbt-action/openmetadata-dbt-action/artifacts/catalog.json
+        dbtManifestFilePath: /home/runner/work/openmetadata-dbt-action/openmetadata-dbt-action/artifacts/manifest.json
+        dbtRunResultsFilePath: /home/runner/work/openmetadata-dbt-action/openmetadata-dbt-action/artifacts/run_results.json
 sink:
   type: metadata-rest
   config: {}
