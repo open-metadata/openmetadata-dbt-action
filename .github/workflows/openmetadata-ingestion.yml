@@ -11,10 +11,6 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
-env:
-  OPENMETADATA_HOST: ${{ secrets.OPENMETADATA_HOST }}
-  OPENMETADATA_JWT_TOKEN: ${{ secrets.OPENMETADATA_JWT_TOKEN }}
-  OPENMETADATA_VERSION: ${{ secrets.OPENMETADATA_VERSION || '1.5.11' }}
 
 jobs:
   ingest-dbt-metadata:
@@ -38,6 +34,8 @@ jobs:
           ${{ runner.os }}-pip-
     
     - name: Install OpenMetadata Ingestion
+      env:
+        OPENMETADATA_VERSION: ${{ secrets.OPENMETADATA_VERSION || '1.5.11' }}
       run: |
         python -m pip install --upgrade pip
         echo "Installing openmetadata-ingestion[dbt] version: $OPENMETADATA_VERSION"
@@ -54,6 +52,9 @@ jobs:
         echo "DBT artifacts found successfully"
     
     - name: Run OpenMetadata DBT Ingestion
+      env:
+        OPENMETADATA_HOST: ${{ secrets.OPENMETADATA_HOST }}
+        OPENMETADATA_JWT_TOKEN: ${{ secrets.OPENMETADATA_JWT_TOKEN }}
       run: |
         echo "Starting OpenMetadata DBT ingestion..."
         metadata ingest -c openmetadata_dbt_config.yaml
