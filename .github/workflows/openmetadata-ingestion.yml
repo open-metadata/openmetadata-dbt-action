@@ -62,4 +62,5 @@ jobs:
         OPENMETADATA_JWT_TOKEN: ${{ secrets.OPENMETADATA_JWT_TOKEN }}
       run: |
         echo "Starting OpenMetadata DBT ingestion..."
+        echo "OpenMetadata Host: ${OPENMETADATA_HOST:0:30}..." # Show first 30 chars for debugging
         metadata ingest -c openmetadata_dbt_config.yaml
