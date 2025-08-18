@@ -15,7 +15,7 @@ sink:
 workflowConfig:
   loggerLevel: INFO
   openMetadataServerConfig:
-    hostPort: ${OPENMETADATA_HOST:-http://localhost:8585/api}
+    hostPort: $OPENMETADATA_HOST
     authProvider: openmetadata
     securityConfig:
-      jwtToken: ${OPENMETADATA_JWT_TOKEN}
+      jwtToken: $OPENMETADATA_JWT_TOKEN
