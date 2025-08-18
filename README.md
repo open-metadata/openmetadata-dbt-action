@@ -89,7 +89,7 @@ The `openmetadata_dbt_config.yaml` file contains the ingestion configuration. **
 
 #### Required Updates:
 
-1. **`serviceName`**: Must match an existing DBT service name in your OpenMetadata instance
+1. **`serviceName`**: Must match an existing database service name in your OpenMetadata instance
 2. **File paths**: Update to match your actual artifact locations in the repository
 
 ```yaml
@@ -102,22 +102,21 @@ source:
   dbtConfigSource:
     dbtConfigType: local
     # ⚠️ UPDATE: Change these paths to match your artifact locations
-    dbtCatalogFilePath: artifacts/catalog.json      # Update path as needed
-    dbtManifestFilePath: artifacts/manifest.json    # Update path as needed
-    dbtRunResultsFilePath: artifacts/run_results.json  # Update path as needed
+    dbtCatalogFilePath: /home/runner/work/openmetadata-dbt-action/openmetadata-dbt-action/artifacts/catalog.json
+    dbtManifestFilePath: /home/runner/work/openmetadata-dbt-action/openmetadata-dbt-action/artifacts/manifest.json
+    dbtRunResultsFilePath: /home/runner/work/openmetadata-dbt-action/openmetadata-dbt-action/artifacts/run_results.json
 
 sink:
   type: metadata-rest
-  config:
-    api_endpoint: ${OPENMETADATA_HOST:-http://localhost:8585/api}
+  config: {}
 
 workflowConfig:
   loggerLevel: INFO
   openMetadataServerConfig:
-    hostPort: ${OPENMETADATA_HOST:-http://localhost:8585/api}
+    hostPort: $OPENMETADATA_HOST
     authProvider: openmetadata
     securityConfig:
-      jwtToken: ${OPENMETADATA_JWT_TOKEN}
+      jwtToken: $OPENMETADATA_JWT_TOKEN
 ```
 
 > **Important:** 
