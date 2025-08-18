@@ -15,6 +15,7 @@ on:
 jobs:
   ingest-dbt-metadata:
     runs-on: ubuntu-latest
+    environment: test
     
     steps:
     - name: Checkout repository
@@ -38,6 +39,10 @@ jobs:
         OPENMETADATA_VERSION: ${{ secrets.OPENMETADATA_VERSION }}
       run: |
         python -m pip install --upgrade pip
+        if [ -z "$OPENMETADATA_VERSION" ]; then
+          echo "Error: OPENMETADATA_VERSION is not set. Please set it in your GitHub environment secrets."
+          exit 1
+        fi
         echo "Installing openmetadata-ingestion[dbt] version: $OPENMETADATA_VERSION"
         pip install "openmetadata-ingestion[dbt]==$OPENMETADATA_VERSION"
 

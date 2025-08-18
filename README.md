@@ -62,7 +62,12 @@ Place these files in your repository. They can be stored in any directory struct
 
 ### 2. Configure GitHub Secrets
 
-Add the following secrets to your GitHub repository (Settings → Secrets and variables → Actions):
+You have two options for setting up secrets:
+
+#### Option A: Environment Secrets (Recommended)
+1. Go to Settings → Environments → New environment
+2. Create an environment named `test` (or modify the workflow to use your environment name)
+3. Add these secrets to the environment:
 
 | Secret Name | Description | Example | Required |
 |------------|-------------|---------|----------|
@@ -70,7 +75,13 @@ Add the following secrets to your GitHub repository (Settings → Secrets and va
 | `OPENMETADATA_JWT_TOKEN` | JWT token for authentication | `eyJhbGciOiJIUzI1NiIsInR5cCI6...` | ✅ |
 | `OPENMETADATA_VERSION` | OpenMetadata server version | `1.9.1.0` | ✅ |
 
-> **Important:** The `OPENMETADATA_VERSION` must exactly match your OpenMetadata server version. Check your server version in OpenMetadata UI → Settings → About.
+#### Option B: Repository Secrets
+Add the secrets directly to Settings → Secrets and variables → Actions → Repository secrets (then remove the `environment: test` line from the workflow)
+
+> **Important:** 
+> - The `OPENMETADATA_VERSION` must exactly match your OpenMetadata server version
+> - Check your server version in OpenMetadata UI → Settings → About
+> - Common versions: `1.5.11`, `1.6.2`, `1.7.3`, `1.8.0`, `1.9.1.0`
 
 ### 3. Configuration File
 
