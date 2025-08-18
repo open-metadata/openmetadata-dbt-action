@@ -6,9 +6,9 @@ source:
       type: DBT
       dbtConfigSource:
         dbtConfigType: local
-        dbtCatalogFilePath: artifacts/catalog.json
-        dbtManifestFilePath: artifacts/manifest.json
-        dbtRunResultsFilePath: artifacts/run_results.json
+        dbtCatalogFilePath: ./artifacts/catalog.json
+        dbtManifestFilePath: ./artifacts/manifest.json
+        dbtRunResultsFilePath: ./artifacts/run_results.json
 sink:
   type: metadata-rest
   config: {}
